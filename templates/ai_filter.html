@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Filter</title>
+    <link rel="icon" type="image/png" href="../static/icon_65x65.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#101118] min-h-screen flex flex-col">
+
+    <!-- Main Section -->
+    <div class="flex-grow flex flex-col items-center p-6">
+        <a href="/" class="absolute top-4 left-4 text-white transition hover:text-gray-300 mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H3m0 0l6 6m-6-6l6-6" />
+            </svg>
+        </a>
+        <h1 class="text-white text-3xl font-bold mb-5 mt-8">Video Capture</h1>
+        
+        <!-- Image Container -->
+        <div class="w-full max-w-2xl rounded-lg overflow-hidden shadow-lg flex justify-center">
+            <img src="{{ url_for('video_feed') }}" class="w-full h-auto" alt="Video Capture">
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="text-md mb-6 text-center text-white">
+        <p>Made by Dylan Sutton. 
+            <a href="https://github.com/your-repo-url" class="underline hover:text-light-blue-400">Source Code</a>
+        </p>
+    </footer>
+
+    <script>
+        window.onbeforeunload = function() {
+            fetch('/stop_camera', { method: 'POST' });
+        };
+    </script>
+
+</body>
+</html>
